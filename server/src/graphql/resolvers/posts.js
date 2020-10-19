@@ -7,6 +7,7 @@ const checkAuth = require('../../util/checkAuth');
 module.exports = {
   Query: {
     async getPosts() {
+      console.log('getPosts');
       try {
         return await Post.find().sort({ createdAt: -1 });
       } catch (error) {
@@ -14,6 +15,7 @@ module.exports = {
       }
     },
     async getPost(_, { postId }) {
+      console.log('getPost');
       try {
         const post = await Post.findById(postId);
         if (post) {
@@ -28,13 +30,12 @@ module.exports = {
   },
   Mutation: {
     async createPost(_, { body }, context) {
+      console.log('createPost');
       const user = checkAuth(context);
 
       if (body.trim() === '') {
         throw new Error('Post body must not be empty');
       }
-
-      console.log(user);
 
       const newPost = new Post({
         body,
@@ -50,6 +51,7 @@ module.exports = {
       return post;
     },
     async deletePost(_, { postId }, context) {
+      console.log('deletePost');
       const { username } = checkAuth(context);
 
       try {
@@ -66,6 +68,7 @@ module.exports = {
       }
     },
     async likePost(_, { postId }, context) {
+      console.log('likePost');
       const { username } = checkAuth(context);
 
       const post = await Post.findById(postId);

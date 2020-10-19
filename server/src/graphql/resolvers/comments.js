@@ -6,6 +6,7 @@ const checkAuth = require('../../util/checkAuth');
 module.exports = {
   Mutation: {
     async createComment(_, { postId, body }, context) {
+      console.log('createComment');
       const { username } = checkAuth(context);
 
       if (body.trim() === '') {
@@ -31,6 +32,7 @@ module.exports = {
       }
     },
     async deleteComment(_, { postId, commentId }, context) {
+      console.log('deleteComment');
       const { username } = checkAuth(context);
 
       const post = await Post.findById(postId);
