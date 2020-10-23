@@ -8,6 +8,7 @@ import { AuthProvider } from './context/auth';
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
+import SinglePostPage from './pages/SinglePost';
 import AuthRoute from './util/AuthRoute';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <AuthRoute exact path="/login" component={LoginPage} />
           <AuthRoute exact path="/register" component={RegisterPage} />
+          <Route exact path="/posts/:postId" component={SinglePostPage} />
         </Container>
       </Router>
     </AuthProvider>
