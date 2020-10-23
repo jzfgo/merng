@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
+import MyPopup from '../util/MyPopup';
 
 const LikeButton = ({ post: { id, likes, likeCount } }) => {
   const { user } = useContext(AuthContext);
@@ -37,12 +38,14 @@ const LikeButton = ({ post: { id, likes, likeCount } }) => {
   );
 
   return (
-    <Button as="div" labelPosition="right" onClick={likePost}>
-      {likeButton}
-      <Label basic color="teal" pointing="left">
-        {likeCount}
-      </Label>
-    </Button>
+    <MyPopup content="Like post">
+      <Button as="div" labelPosition="right" onClick={likePost}>
+        {likeButton}
+        <Label basic color="teal" pointing="left">
+          {likeCount}
+        </Label>
+      </Button>
+    </MyPopup>
   );
 };
 

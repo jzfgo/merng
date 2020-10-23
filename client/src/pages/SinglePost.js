@@ -14,6 +14,7 @@ import {
   Image,
   Label,
 } from 'semantic-ui-react';
+import MyPopup from '../util/MyPopup';
 
 const SinglePostPage = (props) => {
   const postId = props.match.params.postId;
@@ -74,18 +75,20 @@ const SinglePostPage = (props) => {
               <hr />
               <Card.Content extra>
                 <LikeButton user={user} post={{ id, likeCount, likes }} />
-                <Button
-                  as="div"
-                  labelPosition="right"
-                  onClick={() => console.log('Comment on post')}
-                >
-                  <Button basic color="blue">
-                    <Icon name="comments" />
+                <MyPopup content="Comment on Post">
+                  <Button
+                    as="div"
+                    labelPosition="right"
+                    onClick={() => console.log('Comment on post')}
+                  >
+                    <Button basic color="blue">
+                      <Icon name="comments" />
+                    </Button>
+                    <Label basic color="blue" pointing="left">
+                      {commentCount}
+                    </Label>
                   </Button>
-                  <Label basic color="blue" pointing="left">
-                    {commentCount}
-                  </Label>
-                </Button>
+                </MyPopup>
                 {user?.username === username && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
